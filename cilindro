@@ -8,9 +8,9 @@ float volume_cilindro(float radio, float altura);
 void main()
 {
 	float r,v,a;
-	cout<<"introduzca el radio";
+	cout<<"introduzca el radio: ";
 	cin>>r;
-	cout<<"introduzca la altura";
+	cout<<"introduzca la altura: ";
 	cin>>a;
 	v=volume_cilindro(r,a);
 	cout<<"el volumen es: ";
