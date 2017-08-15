@@ -1,0 +1,23 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+using namespace std;
+float volume_cilindro(float radio, float altura);
+void main()
+{
+	float r,v,a;
+	cout<<"introduzca el radio";
+	cin>>r;
+	cout<<"introduzca la altura";
+	cin>>a;
+	v=volume_cilindro(r,a);
+	cout<<"el volumen es: ";
+	cout<<v;
+	getch();
+}
+float volume_cilindro(float radio, float altura)
+{
+	float v,pi=3.1416;
+	v=pi*radio*radio*altura;
+	return v;
+}
