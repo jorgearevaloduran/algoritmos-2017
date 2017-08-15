@@ -1,0 +1,90 @@
+// nombre: arevalo duran jorge denar
+//hora: 12:16
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "stdlib.h"
+
+using namespace std;
+//prototipo de funciones
+float potencia(float x,float y);
+int factorial(int n);
+float serie(int x, int y);
+
+void main()
+{ int opcion,r,a,b;
+// inicio del menu
+  do
+  {cout<<"Menu \n";
+   cout<<"1.    Potencia \n";
+   cout<<"2.    Factorial\n";
+   cout<<"3.    Serie \n";
+   cout<<"0.    Salir \n";
+   cout<<"Opcion: ";
+   cin>>opcion;
+    switch(opcion)
+    {
+     case 1:
+		  cout<<"introduzca la base: ";
+		  cin>>a;
+		  cout<<"introduzca el exponente: ";
+		  cin>>b;
+ 	      r=potencia(a,b);
+		  cout<<"la potencia es :";
+		  cout<<r;
+	 break;
+     case 2:
+		  cout<<"introduzca un numero entero: ";
+		  cin>>a;
+	      r=factorial(a);
+		  cout<<"el factorial es :";
+		  cout<<r;
+	 break;
+     case 3:
+		  cout<<"introduzca la base: ";
+		  cin>>a;
+		  cout<<"introduzca el exponente: ";
+		  cin>>b;
+	      r=serie(a,b);
+		   cout<<"la serie es :";
+		  cout<<r;
+	 break;
+     case 0:
+	      cout<<"salir\n";
+	 break;
+     default: 
+	 cout<<"Opcion invalida";
+    }
+   getch();
+   system("cls");
+  }while(opcion!=0);
+
+   getch();
+}
+float potencia(float x,float y)
+{
+	float i,p=1;
+	for(i=1;i<=y;i++)
+		{
+			p=p*x;
+        }
+	return p;
+}
+int factorial(int n)
+{
+	int i,fac=1;
+	for(i=1;i<=n;i++)
+		{
+			fac=fac*i;
+        }
+	return fac;
+}
+float serie(int x, int y)
+{
+	float i,s=0;
+	for(i=1;i<=y;i++)
+		{
+			s=s+((potencia(x,i))/factorial(i));
+        }
+	return s;
+}
