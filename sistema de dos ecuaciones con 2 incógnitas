@@ -1,0 +1,63 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "stdlib.h"
+using namespace std;
+
+void solucion_sistema(float a, float b, float c, float d, float e, float f, float &x, float &y);
+float valor_de_x(float a, float b, float c, float d, float e, float f);
+float valor_de_y(float a, float b, float c, float d, float e, float f);
+
+void main()
+{
+	float r, a, b, c, d, e, f, x, y;
+	cout << "Este programa resuelve ecuaciones con dos incognitas";
+	cout << "\n";
+	cout << "\n";
+	cout << "    Ax + By + C = 0";
+	cout << "\n";
+	cout << "    Dx + Ey + F = 0";
+	cout << "\n";
+	cout << "\n";
+	cout << "introduzca el valor de A: ";
+	cin >> a;
+	cout << "introduzca el valor de B: ";
+	cin >> b;
+	cout << "introduzca el valor de C: ";
+	cin >> c;
+	cout << "introduzca el valor de D: ";
+	cin >> d;
+	cout << "introduzca el valor de E: ";
+	cin >> e;
+	cout << "introduzca el valor de F: ";
+	cin >> f;
+
+    solucion_sistema(a, b, c, d, e, f, x, y);
+	cout << "la solucion de la ecuacion es: ";
+	cout << "X= ";
+	cout << x;
+	cout << ", ";
+	cout << "Y= ";
+	cout << y;
+	getch();
+}
+
+void solucion_sistema(float a, float b, float c, float d, float e, float f, float &x, float &y)
+{
+	x = valor_de_x(a, b, c, d, e, f);
+	y = valor_de_y(a, b, c, d, e, f);
+}
+
+float valor_de_x(float a, float b, float c, float d, float e, float f)
+{
+	float x;
+	x = (-b*c*d + b*a*f - c*e*a + b*d*c) / (e*a*a - b*d*a);
+	return x;
+}
+
+float valor_de_y(float a, float b, float c, float d, float e, float f)
+{
+	float y;
+	y = (c*d - a*f) / (e*a - b*d);
+	return y;
+}
