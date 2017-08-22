@@ -28,18 +28,20 @@ void main()
 void solucion(float a, float b, float c, float &x1, float &x2)
 {
 	float d;
-	int i = -1;
+	int i = -1, z;
+	z= 2 * a;
 	d = (b*b) - (4 * a*c);
 	if (d < 0)
 	{
-		x1 = (-b / 2 * a);
-		x2 = sqrt(((b*b) - (4 * a*c))*(-1)) / 2 * a;
+		x1 = (-b / (2 * a));
+		x2 = (-b / (2 * a));
 		cout << "el valor de x de la cuadratica es: ";
-		cout << "X1= ";
-		cout << x1;
-		cout << ", ";
-		cout << "X2= ";
-		cout << x2;
+		cout << "\n";
+		cout << " X1= ";
+		cout << x1<<"+"<<"("<<(sqrt (d*(-1)))/z<<"i"<<")";
+		cout << "\n";
+		cout << " X2= ";
+		cout << x2<<"-"<<"("<<(sqrt (d*(-1)))/z<<"i"<<")";
 	}
 	else
 	{
