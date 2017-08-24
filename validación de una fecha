@@ -4,6 +4,7 @@
 #include "stdlib.h"
 
 using namespace std;
+
 void validar_año(int &a);
 void validar_mes(int &m);
 void mes_letra(int m, char* &ml);
@@ -14,7 +15,7 @@ void main()
 {
 	int año, mes, dia, limdia;
 	char* mesletra;
-  cout << "Este programa valida una fecha ";
+	cout << "Este programa valida una fecha ";
 	cout << "\n";
 	validar_año(año);
 	cout << "\n";
@@ -203,7 +204,7 @@ void mes_letra(int m, char* &ml)
 	}
 	if (m == 8)
 	{
-		cout << "AGOSTO";
+		ml = "AGOSTO";
 	}
 	if (m == 9)
 	{
