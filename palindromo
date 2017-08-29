@@ -1,0 +1,33 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+
+#define ENTER '\n'
+using namespace std;
+
+
+void main()
+{
+	int tamaño;
+	string palabra;
+	string alreves;
+	cout<<"introduzca una palabra: ";
+		getline(cin, palabra, ENTER);
+	tamaño= palabra.length();
+	for (int i= tamaño-1; i>=0;i--)
+	{
+		alreves = alreves + palabra[i];
+	}
+	cout<<alreves<<endl;
+	if(palabra == alreves)
+		{
+         cout<<"es palindromo";
+		}
+	else
+		{
+         cout<<"no es palindromo";
+		}
+	getch;
+}
+
