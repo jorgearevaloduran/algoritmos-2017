@@ -22,11 +22,11 @@ void main()
 	cout<<alreves<<endl;
 	if(palabra == alreves)
 		{
-         cout<<"es palindromo";
+         cout<<"es palindromo"<<endl;
 		}
 	else
 		{
-         cout<<"no es palindromo";
+         cout<<"no es palindromo"<<endl;
 		}
 	getch;
 }
