@@ -1,0 +1,82 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#define max 9
+using namespace std;
+void cargarmatriz(int v[max][max], int x, int c);
+void mostrarmatriz(int v[max][max], int x, int c);
+void matriztranspuesta(int v[max][max], int x, int m[max][max], int c);
+void mostrarmatriztransp(int v[max][max], int x, int c);
+
+void main()
+{
+	int matriz[max][max], n, c, matriztransp[max][max];
+	cout << "programa que muestra la matriz trnspuenta de una matriz" << endl;
+	do
+	{
+		cout << "introduzca el numero de filas de la matriz " << endl;
+		cin >> n;
+	} while (n<0 || n>max);
+	do
+	{
+		cout << "introduzca el numero de columnas de la matriz " << endl;
+		cin >> c;
+	} while (n<0 || n>max);
+	cout << "carge la matriz" << endl;
+	cargarmatriz(matriz, n, c);
+	cout << endl;
+	cout << " matriz";
+	cout << endl;
+	mostrarmatriz(matriz, n, c);
+	matriztranspuesta(matriz, n, matriztransp, c);
+	cout << endl;
+	cout << " la matriz transpuesta es: ";
+	cout << endl;
+	mostrarmatriztransp(matriztransp, n, c);
+
+	getch();
+}
+
+void cargarmatriz(int v[max][max], int x, int c)
+{
+	int i, j;
+	for (i = 0; i < x; i++)
+		for (j = 0; j < c; j++)
+			cin >> v[i][j];
+}
+
+void mostrarmatriz(int v[max][max], int x, int c)
+{
+	int i, j;
+	for (i = 0; i < x; i++)
+	{
+		for (j = 0; j < c; j++)
+		{
+			cout << " " << v[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+void matriztranspuesta(int v[max][max], int x, int m[max][max], int c)
+{
+	int i, j, aux;
+	for (j = 0; j < x; j++)
+		for (i = 0; i < c; i++)
+		{
+			aux = v[j][i];
+			m[i][j] = aux;
+		}
+}
+
+void mostrarmatriztransp(int v[max][max], int x, int c)
+{
+	int i, j;
+	for (i = 0; i < c; i++)
+	{
+		for (j = 0; j < x; j++)
+		{
+			cout << " " << v[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
