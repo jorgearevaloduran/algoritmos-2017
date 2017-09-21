@@ -6,7 +6,7 @@ using namespace std;
 void cargarmatriz(int v[max][max], int x, int c);
 void mostrarmatriz(int v[max][max], int x, int c);
 void matriztranspuesta(int v[max][max], int x, int c, int m[max][max]);
-void sumamatrices(int v[max][max], int b[max][max], int s[max][max], int x, int c);
+void productodematrices(int v[max][max], int b[max][max], int s[max][max], int x, int c);
 
 
 void main()
@@ -56,7 +56,7 @@ void main()
 	cout << endl;
 	matriztranspuesta(matriz2, l, t, matriz2trasp);
 	cout << " multiplicacion de las matrices 1y2";
-	sumamatrices(matriz1, matriz2trasp, suma, n, c);
+	productodematrices(matriz1, matriz2trasp, suma, n, c);
 	cout << endl;
 	mostrarmatriz(suma, n, t);
 
@@ -97,7 +97,7 @@ void matriztranspuesta(int v[max][max], int x, int c, int m[max][max])
 }
 
 
-void sumamatrices(int v[max][max], int b[max][max], int s[max][max], int x, int c)
+void productomatrices(int v[max][max], int b[max][max], int s[max][max], int x, int c)
 {
 	int i, j, k, suma = 0, m;
 	for (i = 0; i < x; i++)
