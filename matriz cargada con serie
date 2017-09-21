@@ -1,0 +1,75 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#define max 15
+
+using namespace std;
+
+void cargarmatriz(int v[max][max], int x, int c);
+void mostrarmatriz(int v[max][max], int x, int c);
+
+void main()
+{
+	int matriz[max][max], n, c;
+	cout << "cargar matriz con numeros naturales con la serie 3, 6, 9, 12, 15, 18, 21, 24,...... " << endl;
+	do
+	{
+		cout << "introduzca el numero de filas de la matriz " << endl;
+		cin >> n;
+	} while (n<0 || n>max);
+	do
+	{
+		cout << "introduzca el numero de columnas de la matriz " << endl;
+		cin >> c;
+	} while (c<0 || c>max);
+	cout << "cargando la matriz" << endl;
+	cargarmatriz(matriz, n, c);
+	cout << endl;
+	cout << " matriz";
+	cout << endl;
+	mostrarmatriz(matriz, n, c);
+	cout << endl;
+
+	getch();
+}
+
+void cargarmatriz(int v[max][max], int x, int c)
+{
+	int i, j, con = 0;
+	for (i = 0; i < x; i++)
+		for (j = 0; j < c; j++)
+		{
+			con = con + 3;
+			v[i][j] = con;
+			cout << v[i][j] << endl;
+		}
+}
+
+
+void mostrarmatriz(int v[max][max], int x, int c)
+{
+	int i, j;
+	for (i = 0; i < x; i++)
+	{
+		for (j = 0; j < c; j++)
+		{
+			if (v[i][j] >= 100)
+			{
+				cout << v[i][j] << "  ";
+			}
+			else
+			{
+				if (v[i][j] < 10)
+				{
+					cout << "  " << v[i][j] << "  ";
+				}
+				else
+				{
+					cout << " " << v[i][j] << "  ";
+				}
+			}
+
+		}
+		cout << endl;
+	}
+}
