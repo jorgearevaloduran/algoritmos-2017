@@ -1,0 +1,63 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#define max 3
+
+using namespace std;
+struct matriz
+
+{
+	int m1[max][max];
+};
+
+void cargarmatriz(matriz cuadro[max][max], int n);
+void mostrarmatriz(matriz cuadro[max][max], int n)
+
+void main()
+{
+	matriz cuadro[max][max];
+	int n;
+	do
+	{
+		cout << "Ingrese el tamanho de la matriz (matriz cuadrada)";
+		cin >> n;
+	} while (n <= 0 || n > max);
+	cargarmatriz(cuadro, n);
+	mostrarmatriz(cuadro, n);
+
+    getch();
+}
+
+void cargarmatriz(matriz cuadro[max][max], int n)
+{
+	int i, j, k, l;
+	for (i = 0; i < n; i++)
+		for (j = 0; j < n; j++)
+			for (k = 0; k < n; k++)
+				for (l = 0; l < n; l++)
+					cin >> cuadro[i][j].m1[k][l];
+	
+}
+
+void mostrarmatriz(matriz cuadro[max][max], int n)
+{
+	int i, j, k, l;
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < n; j++)
+		{
+			for (k = 0; k < n; k++)
+			{
+				for (l = 0; l < n; l++)
+				{
+					cout << "  ";
+					cout << cuadro[i][k].m1[j][l];
+					cout << "  ";
+				}
+				cout << "  ";
+			}
+			cout << endl;
+		}
+		cout << endl;
+	}
+}
