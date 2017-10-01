@@ -1,0 +1,513 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+#define MAX 20
+
+using namespace std;
+struct templeado
+{
+	int numempl;
+	string nombre;
+	string apellido;
+	string direccion;
+	int telefono;
+	int cel;
+	float salariobruto;
+	float salario;
+};
+void cargarplanilla(templeado planilla[MAX][MAX], int x);
+void mostrarplanilla(templeado planilla[MAX][MAX], int x);
+float salario(float x);
+
+void main()
+{
+	templeado planilla[MAX][MAX];
+	int n;
+	do
+	{
+		cout << "ingrese el numero de empleados: ";
+		cin >> n;
+	} while (n <= 0 || n > MAX);
+
+	cargarplanilla(planilla, n);
+	mostrarplanilla(planilla, n);
+
+	getch();
+}
+void cargarplanilla(templeado planilla[MAX][MAX], int x)
+{
+	int i, j, s, n, m, t=0, c=0;
+	for (i = 0; i<x; i++)
+		for (j = 0; j<8; j++)
+	{
+		cout << "numero de empleado : ";
+		planilla[i][j].numempl = i + 1;
+		cout << i + 1;
+		j++;
+		cout << endl;
+		cout << endl << "nombre del empleado : ";
+		cin.ignore();
+		getline(cin, planilla[i][j].nombre);
+		j++;
+		cout << endl << "apellidos del empleado : ";
+		getline(cin, planilla[i][j].apellido);
+		j++;
+		cout << endl << "direccion del empleado : ";
+		getline(cin, planilla[i][j].direccion);
+		j++;
+		cout << endl << "telefono del empleado : ";
+		do
+		{
+			t = 0;
+			cin >> planilla[i][j].telefono;
+			m = planilla[i][j].telefono;
+			while (m > 0)
+			{
+				m = m / 10;
+				t++;
+			}
+			if (t != 7)
+			{
+				cout << endl  << "el numero es invaldo introduzca un numero de 7 digitos y que comienze con 3" << endl;
+			}
+			
+		} while (t != 7);
+		t = 0;
+		m = 0;
+		j++;
+		cout << endl << "celular del empleado : ";
+		do
+		{
+			c = 0;
+			cin >> planilla[i][j].cel;
+			m = planilla[i][j].cel;
+			while (m > 0)
+			{
+				m = m / 10;
+				c++;
+			}
+			if (c != 8)
+			{
+				cout << endl << "el numero es invaldo introduzca un numero de 8 digitos y que comienze con 6 o 7" << endl;
+			}
+
+		} while (c != 8);
+		c = 0;
+		m = 0;
+		j++;
+		cout << endl << "salario bruto del empleado : ";
+		do
+		{
+			cin >> planilla[i][j].salariobruto;
+			if (planilla[i][j].salariobruto < 2000)
+			{
+				cout << " el salario debe ser mayor al salario minimo de BOLIVIA " << endl;
+			}
+		} while (planilla[i][j].salariobruto < 2000);
+		s = planilla[i][j].salariobruto;
+		j++;
+		cout << endl;
+		planilla[i][j].salario = salario(s);
+		j++;
+		s = 0;
+		cout << "----------------------------------------" << endl;
+	}
+}
+
+void mostrarplanilla(templeado planilla[MAX][MAX], int x)
+{
+	cout << "#  Nombres         Apellidos              Direccion                Telefono    Celular     Salario bruto  salario      " << endl;
+	int i, j, l;
+	for (i = 0; i < x; i++)
+		for (j = 0; j<8; j++)
+	{
+			cout << planilla[i][j].numempl;
+			j++; 
+			l = planilla[i][j].nombre.length();
+			if (l == 3)
+			{
+				cout << "  " << planilla[i][j].nombre << "           ";
+			}
+			else
+			{
+				if (l == 4)
+				{
+					cout << "  " << planilla[i][j].nombre << "          ";
+				}
+				else
+				{
+					if (l == 5)
+					{
+						cout << "  " << planilla[i][j].nombre << "         ";
+					}
+					else
+					{
+						if (l == 6)
+						{
+							cout << "  " << planilla[i][j].nombre << "        ";
+						}
+						else
+						{
+							if (l == 7)
+							{
+								cout << "  " << planilla[i][j].nombre << "       ";
+							}
+							else
+							{
+								if (l == 8)
+								{
+									cout << "  " << planilla[i][j].nombre << "      ";
+								}
+								else
+								{
+									if (l == 9)
+									{
+										cout << "  " << planilla[i][j].nombre << "     ";
+									}
+									else
+									{
+										if (l == 10)
+										{
+											cout << "  " << planilla[i][j].nombre << "    ";
+										}
+										else
+										{
+											if (l == 11)
+											{
+												cout << "  " << planilla[i][j].nombre << "   ";
+											}
+											else
+											{
+												if (l == 12)
+												{
+													cout << "  " << planilla[i][j].nombre << "  ";
+												}
+												else
+												{
+													if (l == 13)
+													{
+														cout << "  " << planilla[i][j].nombre << " ";
+													}
+													else
+													{
+														if (l == 14)
+														{
+															cout << "  " << planilla[i][j].nombre;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			j++; 
+			l = planilla[i][j].apellido.length();
+			if (l == 3)
+			{
+				cout << "  " << planilla[i][j].apellido << "                    ";
+			}
+			else
+			{
+				if (l == 4)
+				{
+					cout << "  " << planilla[i][j].apellido << "                 ";
+				}
+				else
+				{
+					if (l == 5)
+					{
+						cout << "  " << planilla[i][j].apellido << "                ";
+					}
+					else
+					{
+						if (l == 6)
+						{
+							cout << "  " << planilla[i][j].apellido << "               ";
+						}
+						else
+						{
+							if (l == 7)
+							{
+								cout << "  " << planilla[i][j].apellido << "              ";
+							}
+							else
+							{
+								if (l == 8)
+								{
+									cout << "  " << planilla[i][j].apellido << "             ";
+								}
+								else
+								{
+									if (l == 9)
+									{
+										cout << "  " << planilla[i][j].apellido << "            ";
+									}
+									else
+									{
+										if (l == 10)
+										{
+											cout << "  " << planilla[i][j].apellido << "           ";
+										}
+										else
+										{
+											if (l == 11)
+											{
+												cout << "  " << planilla[i][j].apellido << "          ";
+											}
+											else
+											{
+												if (l == 12)
+												{
+													cout << "  " << planilla[i][j].apellido << "         ";
+												}
+												else
+												{
+													if (l == 13)
+													{
+														cout << "  " << planilla[i][j].apellido << "        ";
+													}
+													else
+													{
+														if (l == 14)
+														{
+															cout << "  " << planilla[i][j].apellido << "       ";
+														}
+														else
+														{
+															if (l == 15)
+															{
+																cout << "  " << planilla[i][j].apellido << "      ";
+															}
+															else
+															{
+																if (l == 16)
+																{
+																	cout << "  " << planilla[i][j].apellido << "     ";
+																}
+																else
+																{
+																	if (l == 17)
+																	{
+																		cout << "  " << planilla[i][j].apellido << "    ";
+																	}
+																	else
+																	{
+																		if (l == 18)
+																		{
+																			cout << "  " << planilla[i][j].apellido << "   ";
+																		}
+																		else
+																		{
+																			if (l == 19)
+																			{
+																				cout << "  " << planilla[i][j].apellido << "  ";
+																			}
+																			else
+																			{
+																				if (l == 20)
+																				{
+																					cout << "  " << planilla[i][j].apellido << " ";
+																				}
+																				else
+																				{
+																					if (l == 21)
+																					{
+																						cout << "  " << planilla[i][j].apellido;
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			j++; 
+			l = planilla[i][j].direccion.length();
+			if (l == 6)
+			{
+				cout << "  " << planilla[i][j].direccion << "                 ";
+			}
+			else
+			{
+				if (l == 7)
+				{
+					cout << "  " << planilla[i][j].direccion << "                ";
+				}
+				else
+				{
+					if (l == 8)
+					{
+						cout << "  " << planilla[i][j].direccion << "               ";
+					}
+					else
+					{
+						if (l == 9)
+						{
+							cout << "  " << planilla[i][j].direccion << "              ";
+						}
+						else
+						{
+							if (l == 10)
+							{
+								cout << "  " << planilla[i][j].direccion << "             ";
+							}
+							else
+							{
+								if (l == 11)
+								{
+									cout << "  " << planilla[i][j].direccion << "            ";
+								}
+								else
+								{
+									if (l == 12)
+									{
+										cout << "  " << planilla[i][j].direccion << "           ";
+									}
+									else
+									{
+										if (l == 13)
+										{
+											cout << "  " << planilla[i][j].direccion << "          ";
+										}
+										else
+										{
+											if (l == 14)
+											{
+												cout << "  " << planilla[i][j].direccion << "         ";
+											}
+											else
+											{
+												if (l == 15)
+												{
+													cout << "  " << planilla[i][j].direccion << "        ";
+												}
+												else
+												{
+													if (l == 16)
+													{
+														cout << "  " << planilla[i][j].direccion << "       ";
+													}
+													else
+													{
+														if (l == 17)
+														{
+															cout << "  " << planilla[i][j].direccion << "      ";
+														}
+														else
+														{
+															if (l == 18)
+															{
+																cout << "  " << planilla[i][j].direccion << "     ";
+															}
+															else
+															{
+																if (l == 19)
+																{
+																	cout << "  " << planilla[i][j].direccion << "    ";
+																}
+																else
+																{
+																	if (l == 20)
+																	{
+																		cout << "  " << planilla[i][j].direccion << "   ";
+																	}
+																	else
+																	{
+																		if (l == 21)
+																		{
+																			cout << "  " << planilla[i][j].direccion << "  ";
+																		}
+																		else
+																		{
+																			if (l == 22)
+																			{
+																				cout << "  " << planilla[i][j].direccion << " ";
+																			}
+																			else
+																			{
+																				if (l == 23)
+																				{
+																					cout << "  " << planilla[i][j].direccion;
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			j++;
+			cout << "  " << planilla[i][j].telefono << "   ";
+			j++; 
+			cout << "  " << planilla[i][j].cel << "  ";
+			j++; 
+			cout << "  " << planilla[i][j].salariobruto << " Bs.    ";
+			j++;
+			cout << "  " << planilla[i][j].salario << " Bs. " << endl;
+	}
+
+}
+
+float salario(float x)
+{
+	float s, a, an, b;
+	a = 12.71;
+	b = x*a;
+	an = b / 100;
+	if (x <= 13000 )
+	{
+		s = x - an;
+	}
+	else
+	{
+		if (x <= 25000 || x >13000)
+		{
+			s = x - (((x * 1) / 100) + an);
+		}
+		else
+		{
+			if (x <= 35000 || x > 25000)
+			{
+				s = x - (((x * 5) / 100) + an);
+			}
+			else
+			{
+				if (x > 35000)
+				{
+					s = x - (((x * 10) / 100) + an);
+				}
+			}
+		}
+	}
+	return s;
+}
