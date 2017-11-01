@@ -1,0 +1,93 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+using namespace std;
+#define n 5
+
+
+struct vec
+{
+	string b[1][n];
+};
+
+vec vector[n];
+void cargarvector(vec v[n], int t);
+void mostrar(vec v[n], int t);
+void segundovector(vec sv[n][n], int t, vec v[n]);
+void mostrarsegundovector(vec sv[n][n], int t);
+
+void main()
+{
+	vec segvector[n][n];
+	int c;
+	cout << "tamanho del vector: ";
+	cin >> c;
+	cout << "cargar vector" << endl;
+	cargarvector(vector, c);
+	cout << endl << "vector" << endl;
+	mostrar(vector, c);
+	cout << endl << "matriz" << endl;
+	segundovector(segvector, c, vector);
+	mostrarsegundovector(segvector, c);
+	getch();
+}
+
+void cargarvector(vec v[n], int t)
+{
+	cin.ignore();
+	for (int i = 0; i < t; i++)
+		for (int j = 0; j < t; j++)
+		{
+			getline(cin, v[i].b[1][j]);
+		}
+}
+
+void mostrar(vec v[n], int t)
+{
+	for (int i = 0; i < t; i++)
+	{
+		for (int j = 0; j < t; j++)
+		{
+			cout << v[i].b[1][j] << "\t";
+		}
+		cout << endl;
+	}
+}
+
+
+void segundovector(vec sv[n][n], int t, vec v[n])
+{
+	int c;
+	string l;
+	for (int i = 0; i < t; i++)
+	{
+		for (int j = 0; j < t; j++)
+		{
+			for (int k = 0; k < t; k++)
+			{
+				l = v[i].b[1][j];
+				sv[i][j].b[1][k]=l;
+			}
+		}
+	}
+}
+
+void mostrarsegundovector(vec sv[n][n], int t)
+{
+	int c;
+	string l;
+	for (int i = 0; i < t; i++)
+	{
+		for (int j = 0; j < t; j++)
+		{
+			for (int k = 0; k < t; k++)
+			{
+				cout << sv[i][j].b[1][k];
+				cout << "\t";
+			}
+			cout << "\t";
+		}
+		cout << endl << endl;
+	}
+}
