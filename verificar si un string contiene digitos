@@ -1,0 +1,45 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+
+#define max 3
+using namespace std;
+
+void n_digitos(string c, int &d);
+
+void main()
+{
+	int c, rep, dig;
+	string palabra;
+	cout << "verifica si un palabra (string) contiene digitos" << endl;
+	cout << "introduzca una palabra: ";
+	getline(cin, palabra);
+	n_digitos(palabra, dig);
+	cout << endl;
+	if (dig == 0)
+	{
+		cout << "la palabra no contiene digitos" << endl;
+	}
+	else
+	{
+		cout << "el numero de digitos que tiene la palabra  es: " << dig << endl;
+	}
+	getch();
+}
+
+void n_digitos(string c, int &d)
+{
+	int con, z = 0;
+	string v, v2;
+	con = c.length();
+	for (int i = 0; i < con; i++)
+	{
+		if (isdigit(c[i]))
+		{
+			z++;
+		}
+	}
+	d = z;
+	cout << endl;
+}
