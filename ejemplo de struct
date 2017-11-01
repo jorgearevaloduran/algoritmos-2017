@@ -11,7 +11,7 @@ struct matriz
 };
 
 void cargarmatriz(matriz cuadro[max][max], int n);
-void mostrarmatriz(matriz cuadro[max][max], int n)
+void mostrarmatriz(matriz cuadro[max][max], int n);
 
 void main()
 {
@@ -25,7 +25,7 @@ void main()
 	cargarmatriz(cuadro, n);
 	mostrarmatriz(cuadro, n);
 
-    getch();
+	getch();
 }
 
 void cargarmatriz(matriz cuadro[max][max], int n)
@@ -36,7 +36,7 @@ void cargarmatriz(matriz cuadro[max][max], int n)
 			for (k = 0; k < n; k++)
 				for (l = 0; l < n; l++)
 					cin >> cuadro[i][j].m1[k][l];
-	
+
 }
 
 void mostrarmatriz(matriz cuadro[max][max], int n)
@@ -50,11 +50,11 @@ void mostrarmatriz(matriz cuadro[max][max], int n)
 			{
 				for (l = 0; l < n; l++)
 				{
-					cout << "  ";
+
 					cout << cuadro[i][k].m1[j][l];
-					cout << "  ";
+					cout << " \t";
 				}
-				cout << "  ";
+				cout << " \t";
 			}
 			cout << endl;
 		}
