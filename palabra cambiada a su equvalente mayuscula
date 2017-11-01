@@ -1,0 +1,58 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+
+#define max 3
+using namespace std;
+
+void mayuscula(string c, int &n);
+
+void main()
+{
+int rep;
+string palabra;
+cout << "introduzca una palabra: ";
+getline(cin, palabra);
+cout << endl;
+cout << "palabra cambiada a letras mayusculas: ";
+mayuscula(palabra, rep);
+cout << endl;
+cout << "el numero de letras no repetidas son: " << rep << endl;
+}
+
+void mayuscula(string c, int &n)
+{
+int con, cont = 0, rep = 0;
+string v, v2;
+bool va = true;
+con = c.length();
+for (int i = 0; i < con; i++)
+{
+c[i] = toupper(c[i]);
+cout << c[i];
+}
+cout << endl;
+
+for (int j = 0; j < con; j++)
+{
+for (int k = 0; k < con; k++)
+{
+if (k != j)
+{
+v2 = c.at(j);
+v = c.at(k);
+if (v==v2)
+{
+cont++;
+}
+}
+}
+if (cont > 0)
+{
+rep++;
+}
+cont = 0;
+}
+n = con - rep;
+}
