@@ -1,0 +1,394 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#define max 9
+using namespace std;
+void cargarmatriz(int v[max][max], int x, int c);
+void mostrarmatriz(int v[max][max], int x, int c);
+void matriztranspuesta(int v[max][max], int x, int m[max][max], int c);
+void sumamatrices(int v[max][max], int b[max][max], int s[max][max], int x, int c);
+void productomatrices(int v[max][max], int b[max][max], int s[max][max], int x, int c, int t);
+void matrizmagica(int v[max][max], int x);
+void matrizinversa(int m1[max][max], int n);
+void mostrarmatrizinversa(int m1[max][max], int k);
+
+void main()
+{
+	int matriz[max][max], n, c, matriztransp[max][max];
+	int fil, col, matriz2[max][max], opcion, suma[max][max], t[max][max], p[max][max];
+	cout << endl << "Realizar un programa organizado en funciones y un menu principal de los ejercicios de matrices";
+	do {
+		cout << endl << endl << "************** M E N U ****************";
+		cout << endl << endl << "1.-Matriz transpuesta.";
+		cout << endl << "2.-Suma de matrices";
+		cout << endl << "3.-Multiplicacion de matrices";
+		cout << endl << "4.-Cargar una matriz de cuadrada de forma circular con los primeros numeros naturales.";
+		cout << endl << "5.-Matriz inversa.";
+		cout << endl << "6.-Verificar si una matriz es magica.";
+		cout << endl << "7.-Cargar matriz por diagonales con los primeros numeros naturales.";
+		cout << endl << "0.-Salir";
+		cout << endl << endl << "Seleccione su opcion.: 	";
+		cin >> opcion;
+		switch (opcion)
+		{
+		case 1:
+		{
+			cout << "cargue una matriz" << endl;
+			cout << "Numero de filas para matriz: ";
+			cin >> fil;
+			cout << endl << "Numero de columnas para matriz: ";
+			cin >> col;
+
+			cargarmatriz(matriz, fil, col);
+			cout << "matriz" << endl;
+			mostrarmatriz(matriz, fil, col);
+			matriztranspuesta(matriz, fil, matriztransp, col);
+			cout << "matriz transpuenta" << endl;
+			mostrarmatriz(matriz, col, fil);
+			break;
+		}
+		case 2:
+		{
+			cout << "suma de matrices" << endl;
+			do
+			{
+				cout << "introduzca el numero de filas de la matriz #1" << endl;
+				cin >> fil;
+			} while (n<0 || n>max);
+			do
+			{
+				cout << "introduzca el numero de columnas de la matriz #1 " << endl;
+				cin >> col;
+			} while (n<0 || n>max);
+			cout << "carge la matriz #1" << endl;
+			cargarmatriz(matriz, fil, col);
+			cout << endl;
+			cout << "para sumar matrices las dos deben de ser del mismo tamanho" << endl;
+			cout << "carge la matriz #2" << endl;
+			cargarmatriz(matriz2, fil, col);
+			cout << endl;
+			cout << " matriz #1";
+			cout << endl;
+			mostrarmatriz(matriz, fil, col);
+			cout << endl;
+			cout << " matriz #2";
+			cout << endl;
+			mostrarmatriz(matriz2, fil, col);
+			cout << endl;
+			cout << " suma de las matrices 1y2";
+			sumamatrices(matriz, matriz2, suma, fil, col);
+			cout << endl;
+			mostrarmatriz(suma, fil, col);
+			break;
+		}
+		case 3:
+		{
+			do
+			{
+				cout << "introduzca el numero de filas de la matriz #1" << endl;
+				cin >> fil;
+			} while (fil<0 || fil>max);
+			do
+			{
+				cout << "introduzca el numero de columnas de la matriz #1 " << endl;
+				cin >> col;
+			} while (col<0 || col>max);
+			cout << "carge la matriz #1" << endl;
+			cargarmatriz(matriz, fil, col);
+			cout << endl;
+			cout << "para multiplicar matrices las dos deben de ser del mismo tamanho" << endl;
+			cout << "o columna de la #1 con fila del #2  deben de ser del mismo rango" << endl;
+			do
+			{
+				cout << "introduzca el numero de filas de la matriz #2" << endl;
+				cin >> n;
+				if (n != col)
+				{
+					cout << "la multiplicacion de matrices no se dara" << endl;
+					cout << "por que no cumple las condiciones necesarias" << endl;
+				}
+			} while (n != col);
+			do
+			{
+				cout << "introduzca el numero de columnas de la matriz #2 " << endl;
+				cin >> c;
+			} while (c<0 || c>max);
+			cout << "carge la matriz #2" << endl;
+			cargarmatriz(matriz2, n, c);
+			cout << endl;
+			cout << " matriz #1";
+			cout << endl;
+			mostrarmatriz(matriz, fil, col);
+			cout << endl;
+			cout << " matriz #2";
+			cout << endl;
+			mostrarmatriz(matriz2, n, c);
+			cout << endl;
+			matriztranspuesta(matriz2, n, t, c);
+			cout << " multiplicacion de las matrices 1y2";
+			productomatrices(matriz, matriz2, p, fil, col, n);
+			cout << endl;
+			mostrarmatriz(p, fil, c);
+			break;
+		}
+		case 4:
+		{
+			cout << "cargar matriz con numeros naturales de forma circular " << endl;
+			do
+			{
+				cout << "introduzca el tamaño de la matriz (matriz cuadrada)" << endl;
+				cin >> n;
+			} while (n<0 || n>max);
+			c = n;
+			cout << "cargando la matriz " << endl;
+			cargarmatriz(matriz, n, c);
+			cout << endl;
+			cout << " matriz de forma cilcular ";
+			cout << endl;
+			mostrarmatriz(matriz, n, c);
+			cout << endl;
+			matriztranspuesta(matriz, n, t, c);
+			cout << " matriz de forma cilcular en direccion contraria ";
+			cout << endl;
+			mostrarmatriz(matriz, n, c);
+			cout << endl;
+
+			break;
+		}
+		case 5:
+		{
+			cout << "matriz inversa" << endl;
+			do
+			{
+				cout << "introduzca el tamaño de la matriz (matriz cuadrada)" << endl;
+				cin >> n;
+			} while (n<0 || n>max);
+			c = n;
+			cout << "carge la matriz" << endl;
+			cargarmatriz(matriz, n, c);
+			cout << endl;
+			cout << "la matriz" << endl;
+			mostrarmatriz(matriz, n, c);
+			cout << endl;
+			matrizinversa(matriz, n);
+			cout << "la matriz inversa es:" << endl << endl;
+			mostrarmatrizinversa(matriz, n);
+
+			break;
+		}
+		case 6:
+		{
+			cout << "verifica si es una matriz magica " << endl;
+			do
+			{
+				cout << "introduzca el tamaño de la matriz (matriz cuadrada)" << endl;
+				cin >> n;
+			} while (n<0 || n>max);
+			c = n;
+			cout << "carge la matriz" << endl;
+			cargarmatriz(matriz, n, c);
+			cout << endl;
+			cout << " matriz";
+			cout << endl;
+			mostrarmatriz(matriz, n, c);
+			cout << endl;
+			matrizmagica(matriz, n);
+			cout << endl;
+			break;
+		}
+		case 7:cout << "salir";
+			break;
+		case 0:
+		{
+			cout << "saliendo....";
+			break;
+		}
+		default:
+		{
+			cout << "error";
+			break;
+		}
+		}
+	} while (opcion != 0);
+	getch();
+}
+
+
+
+void cargarmatriz(int v[max][max], int x, int c)
+{
+	int i, j;
+	for (i = 0; i < x; i++)
+		for (j = 0; j < c; j++)
+			cin >> v[i][j];
+}
+
+void mostrarmatriz(int v[max][max], int x, int c)
+{
+	int i, j;
+	for (i = 0; i < x; i++)
+	{
+		for (j = 0; j < c; j++)
+		{
+			cout << v[i][j] << "\t";
+		}
+		cout << endl;
+	}
+}
+void matriztranspuesta(int v[max][max], int x, int m[max][max], int c)
+{
+	int i, j, aux;
+	for (j = 0; j < x; j++)
+		for (i = 0; i < c; i++)
+		{
+			aux = v[j][i];
+			m[i][j] = aux;
+		}
+	for (i = 0; i < c; i++)
+		for (j = 0; j < x; j++)
+		{
+			v[i][j] = m[i][j];
+		}
+}
+
+void sumamatrices(int v[max][max], int b[max][max], int s[max][max], int x, int c)
+{
+	int i, j, suma = 0;
+	for (i = 0; i < x; i++)
+		for (j = 0; j < c; j++)
+		{
+			suma = v[i][j] + b[i][j];
+			s[i][j] = suma;
+			suma = 0;
+		}
+
+}
+
+void productomatrices(int v[max][max], int b[max][max], int s[max][max], int x, int c, int t)
+{
+	int i, j, k, suma = 0, m;
+	for (i = 0; i < x; i++)
+	{
+		for (j = 0; j < c; j++)
+		{
+			for (k = 0; k < t; k++)
+			{
+				m = v[i][k] * b[j][k];
+				suma = suma + m;
+			}
+			s[i][j] = suma;
+			m = 0;
+			suma = 0;
+
+		}
+	}
+}
+
+void matrizmagica(int v[max][max], int x)
+{
+	int i, j, s = 0, h = 0, b = 0, d = 0, m = 0;
+	for (i = 0; i < 1; i++)
+		for (j = 0; j < x; j++)
+		{
+			s = s + v[i][j];
+		}
+
+	for (i = 1; i < x; i++)
+	{
+		for (j = 0; j < x; j++)
+		{
+			h = h + v[i][j];
+		}
+		if (h != s)
+		{
+			m++;
+		}
+		h = 0;
+	}
+
+	for (j = 1; j < x; j++)
+	{
+		for (i = 0; i < x; i++)
+		{
+			b = b + v[i][j];
+		}
+		if (b != s)
+		{
+			m++;
+		}
+		b = 0;
+	}
+
+	for (i = 0; i < x; i++)
+	{
+		for (j = 0; j < x; j++)
+		{
+			if (i == j)
+			{
+				d = d + v[i][j];
+			}
+		}
+
+	}
+	if (d != s)
+	{
+		m++;
+	}
+	if (m != 0)
+	{
+		cout << "no es matriz magica";
+	}
+	else
+	{
+		cout << "es matriz magica";
+	}
+}
+
+void matrizinversa(int m1[max][max], int k)
+{
+	int i, j, s;
+	float coef, aux[1000], elemento;
+	for (i = 0; i<k; i++)
+		for (j = k; j<2 * k; j++)
+		{
+			if (i == (j - k))
+				m1[i][j] = 1;
+			else
+				m1[i][j] = 0;
+		}
+
+	for (s = 0; s<k; s++)
+	{
+		elemento = m1[s][s];
+		for (j = 0; j<2 * k; j++)
+			m1[s][j] = m1[s][j] / elemento;
+		for (i = 0; i<k; i++)
+		{
+			if (i == s)
+				;
+			else
+			{
+				coef = m1[i][s];
+				for (j = 0; j<2 * k; j++)
+					aux[j] = m1[s][j] * (coef*-1);
+				for (j = 0; j<2 * k; j++)
+					m1[i][j] = m1[i][j] + aux[j];
+			}
+		}
+	}
+
+}
+
+
+void mostrarmatrizinversa(int m1[max][max], int k)
+{
+	int i, j;
+	for (i = 0; i < k; i++)
+	{
+		for (j = k; j < 2 * k; j++)
+		{
+			cout << m1[i][j] << "\t";
+		}
+		cout << endl;
+	}
+}
