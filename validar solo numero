@@ -1,0 +1,44 @@
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include "conio.h"
+
+void validarnumero(int &n);
+
+using namespace std;
+
+void main()
+{
+	int n;
+	cout << "validar solo numeros" << endl;
+	validarnumero(n);
+	cout << endl << "el numero es: " << n;
+	getch();
+}
+
+
+void validarnumero(int &n)
+{
+	int c, au;
+	string numero;
+	cout << "Ingresar un numero: ";
+	do
+	{
+		getline(cin, numero);
+		c = numero.length();
+		for (int i = 0; i < c; i++)
+		{
+			if (!(isdigit(numero[i])))
+			{
+				cout << "ingresa solo numeros: ";
+				au = 0;
+				i = c;
+			}
+			else
+			{
+				au = 1;
+			}
+		}
+	} while (au == 0);
+	n = (atoi(numero.substr(0, c + 1).c_str()));
+}
