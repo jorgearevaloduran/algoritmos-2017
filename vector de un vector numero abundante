@@ -1,0 +1,73 @@
+#include "stdafx.h"
+#include <iostream>
+#include <sstream>
+#include "conio.h"
+#define max 10
+using namespace std;
+struct vector
+{
+	int b[max];
+};
+void cargarvector(vector v[max], int n);
+void mostrarvector(vector v[max], int n);
+void numeroabundante(int n);
+void main()
+{
+	int c;
+	vector n[max];
+	cout << "tamanho del vector" << endl;
+	cin >> c;
+	cout << "cargar vector" << endl;
+	cargarvector(n, c);
+	cout << endl;
+	cout << "mostrar vector" << endl;
+	mostrarvector(n, c);
+}
+void cargarvector(vector v[max], int n)
+{
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < 2; j++)
+			cin >> v[i].b[j];
+}
+void mostrarvector(vector v[max], int n)
+{
+	int num;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			cout << v[i].b[j] << "\t";
+		}
+		cout << endl;
+	}
+	cout << endl;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			num = v[i].b[j];
+			numeroabundante(num);
+		}
+	}
+}
+void numeroabundante(int n)
+{
+	string d = "1";
+	int c = 1, t;
+	for (int i = 2; i <= n / 2; i++)
+	{
+		t = i;
+		stringstream ss;
+		ss << t;
+		string newt = ss.str();
+		if (n%i == 0)
+		{
+			d = d + "+" + newt;
+			c = c + i;
+		}
+	}
+	if (n < c)
+	{
+		cout << "el " << n << " es abundante por que la suma de sus diviciones exacto " << d << " es " << c << " y el mismo es mayor a " << n << endl;
+	}
+}
