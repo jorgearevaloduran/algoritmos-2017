@@ -68,6 +68,6 @@ void numeroabundante(int n)
 	}
 	if (n < c)
 	{
-		cout << "el " << n << " es abundante por que la suma de sus diviciones exacto " << d << " es " << c << " y el mismo es mayor a " << n << endl;
+		cout << "el " << n << " es abundante por que la suma de sus divisores exactos " << d << " es " << c << " y el mismo es mayor a " << n << endl;
 	}
 }
