@@ -1,0 +1,105 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#define max 9
+using namespace std;
+
+void cargarmatriz(int v[max][max], int x, int c);
+void mostrarmatriz(int v[max][max], int x);
+void matrizinversa(int m1[max][max], int n);
+void mostrarmatrizinversa(int m1[max][max], int k);
+
+
+void main()
+{
+	int k, matriz[max][max], c;
+
+	cout << "matriz inversa" << endl;
+	do
+	{
+		cout << "introduzca el tamaño de la matriz (matriz cuadrada)" << endl;
+		cin >> k;
+	} while (k<0 || k>max);
+	c = k;
+	cout << "carge la matriz" << endl;
+	cargarmatriz(matriz, k, c);
+	cout << endl;
+	mostrarmatriz(matriz, k);
+	cout << endl;
+	matrizinversa(matriz, k);
+	cout << "la matriz inversa es:" << endl << endl;
+	mostrarmatrizinversa(matriz, k);
+
+	getch();
+}
+void cargarmatriz(int v[max][max], int x, int t)
+{
+	int i, j;
+	for (i = 0; i < x; i++)
+		for (j = 0; j < x; j++)
+			cin >> v[i][j];
+}
+
+
+
+
+
+void matrizinversa(int m1[max][max], int k)
+{
+	int i, j, s;
+	float coef, aux[1000], elemento;
+	for (i = 0; i<k; i++)
+		for (j = k; j<2 * k; j++)
+		{
+			if (i == (j - k))
+				m1[i][j] = 1;
+			else
+				m1[i][j] = 0;
+		}
+	for (s = 0; s<k; s++)
+	{
+		elemento = m1[s][s];
+		for (j = 0; j<2 * k; j++)
+			m1[s][j] = m1[s][j] / elemento;
+		for (i = 0; i<k; i++)
+		{
+			if (i == s)
+				;
+			else
+			{
+				coef = m1[i][s];
+				for (j = 0; j<2 * k; j++)
+					aux[j] = m1[s][j] * (coef*-1);
+				for (j = 0; j<2 * k; j++)
+					m1[i][j] = m1[i][j] + aux[j];
+			}
+		}
+	}
+}
+
+void mostrarmatrizinversa(int m1[max][max], int k)
+{
+	int i, j;
+	for (i = 0; i < k; i++)
+	{
+		for (j = k; j < 2 * k; j++)
+		{
+			cout << m1[i][j] << "\t";
+		}
+		cout << endl;
+	}
+}
+
+
+void mostrarmatriz(int v[max][max], int x)
+{
+	int i, j;
+	for (i = 0; i < x; i++)
+	{
+		for (j = 0; j < x; j++)
+		{
+			cout << v[i][j] << " \t";
+		}
+		cout << endl;
+	}
+}
