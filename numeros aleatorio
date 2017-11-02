@@ -3,7 +3,9 @@
 #include <string>
 #include <time.h>
 #include "conio.h"
+//limite del tamaño del vector
 #define max 100
+//limite del maximo numero que se va a generar
 #define lsup 1000
 
 void cargarvector(int v[max], int n);
@@ -14,7 +16,7 @@ using namespace std;
 void main()
 {
 	int v[max], n;
-	cout << "ordena un vector" << endl;
+	cout << "carga un vector con numeros aleatorios" << endl;
 	do
 	{
 		cout << "tamanho del vector: ";
