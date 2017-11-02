@@ -1,0 +1,47 @@
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <time.h>
+#include "conio.h"
+#define max 100
+#define lsup 1000
+
+void cargarvector(int v[max], int n);
+void numeroaleatorio(int v[max], int n);
+void mostrarvector(int v[max], int n);
+using namespace std;
+
+void main()
+{
+	int v[max], n;
+	cout << "ordena un vector" << endl;
+	do
+	{
+		cout << "tamanho del vector: ";
+		cin >> n;
+	} while (n < 0 || n > max);
+	cout << endl << "carguando el vector" << endl;
+	numeroaleatorio(v, n);
+	mostrarvector(v, n);
+	cout << endl;
+
+	getch();
+}
+
+void mostrarvector(int v[max],int n)
+{
+	for (int i = 0; i < n; i++)
+		cout << v[i] << "\t";
+}
+
+void numeroaleatorio(int v[max], int n)
+{
+	int num;
+	// srand(time(NULL)) sirve para que no repitan "patrones de numeros" (no para que no repitan numeros)
+	srand(time(NULL));
+	for (int i = 0; i < n; i++)
+	{
+		num = rand() % lsup;
+		v[i] = num;
+	}
+}
