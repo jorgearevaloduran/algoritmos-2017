@@ -1,0 +1,57 @@
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <time.h>
+#include "conio.h"
+#define max 10
+#define lsup 100
+
+void numeroaleatorio(int v[max][max], int n, int x);
+void mostrarmatriz(int v[max][max], int n, int x);
+using namespace std;
+
+void main()
+{
+	int v[max][max], n, c;
+	cout << "ordena un vector" << endl;
+	do
+	{
+		cout << "tamanho de fila de la matriz: ";
+		cin >> n;
+	} while (n < 0 || n > max);
+	do
+	{
+		cout << "tamanho de columnas de la matriz: ";
+		cin >> c;
+	} while (c < 0 || c > max);
+	cout << endl << "cargando la matriz" << endl;
+	numeroaleatorio(v, n, c);
+	mostrarmatriz(v, n, c);
+	cout << endl;
+
+	getch();
+}
+
+void mostrarmatriz(int v[max][max],int n, int x)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < x; j++)
+		{
+			cout << v[i][j] << "\t";
+		}
+		cout << endl;
+	}
+}
+
+void numeroaleatorio(int v[max][max], int n, int x)
+{
+	int num;
+	srand(time(NULL));
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < x; j++)
+		{
+			num = rand() % lsup;
+			v[i][j] = num;
+		}
+}
