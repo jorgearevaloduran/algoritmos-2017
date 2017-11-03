@@ -30,6 +30,7 @@ void main()
 	cout << endl << endl;
 	//mostrarmatriz(n, c);
 	sumafila(n, c);
+	getch();
 }
 void cargar(int m[max][max], int n)
 {
