@@ -1,0 +1,143 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#define max 10
+using namespace std;
+void cargar(int m[max][max], int n);
+void mayorymenor(int v[max][max], int n, int&ma, int&me, int x);
+void matriztranspuesta(int v[max][max], int x, int m[max][max]);
+void mostrarmatriz(int v[max][max], int x);
+void sumafila(int m[max][max], int n);
+bool verificar(int v[max][max], int x, int k, int t, int n);
+void main()
+{
+	int n[max][max], c, t[max][max];
+	cout << "tamanho del vector: ";
+	do
+	{
+		cin >> c;
+		if (c > max || c <= 0)
+		{
+			cout << endl << "el tamanho del vector excede el limite" << endl;
+			cout << "digite el tamanho del vector: ";
+		}
+	} while (c > max || c <= 0);
+	cout << endl << "cargar vector" << endl;
+	cargar(n, c);
+	mostrarmatriz(n, c);
+	cout << endl << endl;
+	matriztranspuesta(n, c, t);
+	cout << endl << endl;
+	//mostrarmatriz(n, c);
+	sumafila(n, c);
+}
+void cargar(int m[max][max], int n)
+{
+	bool t;
+	int num;
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < n; j++)
+		{
+			do
+			{
+				t = true;
+				cin >> num;
+				if (verificar(m, num, i, j, n) == false)
+				{
+					cout << endl << "el numero ya fue ingresado" << endl;
+					cout << "ingrese otro numero: ";
+					t = false;
+				}
+			} while (t == false);
+			m[i][j] = num;
+			num = 0;
+
+		}
+}
+
+bool verificar(int v[max][max], int x, int k, int t, int n)
+{
+	for (k = 0; k < n; k++)
+		for (t = 0; t < n; t++)
+		{
+			if (x == v[k][t])
+			{
+				return false;
+			}
+		}
+	return true;
+}
+
+void matriztranspuesta(int v[max][max], int x, int m[max][max])
+{
+	int i, j, aux;
+	for (j = 0; j < x; j++)
+		for (i = 0; i < x; i++)
+		{
+			aux = v[j][i];
+			m[i][j] = aux;
+		}
+	for (i = 0; i < x; i++)
+		for (j = 0; j < x; j++)
+		{
+			v[i][j] = m[i][j];
+		}
+}
+
+void mostrarmatriz(int v[max][max], int x)
+{
+	int i, j;
+	for (i = 0; i < x; i++)
+	{
+		for (j = 0; j < x; j++)
+		{
+			cout << v[i][j] << "\t";
+		}
+		cout << endl;
+	}
+}
+
+
+void sumafila(int m[max][max], int n)
+{
+	int s = 0, c, z, h;
+	float prom;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			s = s + m[i][j];
+		}
+		cout << endl << s;
+		mayorymenor(m, i, z, h, n);
+		c = z + h;
+		cout << endl << c;
+		prom = (s - c) / (n - 2);
+		cout << "\n" << "el promedio de la columna " << i + 1 << "es: " << prom;
+		s = 0;
+		c = 0;
+		h = 0;
+		z = 0;
+	}
+	cout << endl;
+}
+void mayorymenor(int v[max][max], int n, int&ma, int&me, int x)
+{
+	int men = 9999, may = 0;
+	for (int i = n; i <= n; i++)
+	{
+		for (int j = 0; j < x; j++)
+		{
+			if (v[i][j] < men)
+			{
+				men = v[i][j];
+			}
+			if (v[i][j] > may)
+			{
+				may = v[i][j];
+			}
+		}
+	}
+	me = men;
+	ma = may;
+}
