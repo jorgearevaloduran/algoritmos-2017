@@ -1,0 +1,65 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#define max 1000
+using namespace std;
+
+int factorial(int n);
+bool numerocurioso(int n);
+
+void main()
+{
+	int num;
+  cout << "cual es el numero que desea saber si es curioso" << endl;
+	cout << "introduzca un numero: ";
+	do
+	{
+		cin >> num;
+		if (num<0 || num>max)
+		{
+			cout << endl << "el numero esta fuera del rango limite" << endl;
+			cout << "introduzca otro numero: ";
+		}
+	} while (num<0 || num>max);
+	if (numerocurioso(num) == true)
+	{
+		cout << endl << "el numero " << num << " es curioso ";
+	}
+	else
+	{
+		cout << endl << "el numero " << num << " no es curioso ";
+	}
+	getch();
+}
+
+int factorial(int n) 
+{
+	long fac = 1;
+	for (int i = 1; i <= n; i++)
+	{
+		fac = fac * i;
+	}
+	return fac;
+}
+
+bool numerocurioso(int n)
+{
+	bool cu;
+	int dig, s = 0, num;
+	num = n;
+	while (num > 0)
+	{
+		dig = num % 10;
+		s = s + factorial(dig);
+		num = num / 10;
+	}
+	if (n == s)
+	{
+		cu = true;
+	}
+	else
+	{
+		cu = false;
+	}
+	return cu;
+}
