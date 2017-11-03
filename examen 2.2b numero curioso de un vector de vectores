@@ -1,0 +1,131 @@
+#include "stdafx.h"
+#include <iostream>
+#include <sstream>
+#include "conio.h"
+#define max 10
+using namespace std;
+struct vector
+{
+	int b[max];
+};
+void cargarvector(vector v[max], int n);
+void mostrarvector(vector v[max], int n);
+int factorial(int n);
+bool numerocurioso(int n, string &x, int &r);
+
+void main()
+{
+	int c;
+	vector n[max];
+	cout << "introduzca el tamanho del vector: ";
+	do
+	{
+		cin >> c;
+		if ( c<0 || c>max)
+		{
+			cout << endl << "el tamanho del vector esta fuera del rango limite" << endl;
+			cout << "introduzca otro numero: ";
+		}
+	} while (c<0 || c>max);
+	
+	cout << "cargar vector" << endl;
+	cargarvector(n, c);
+	cout << endl;
+	cout << "mostrar vector" << endl;
+	mostrarvector(n, c);
+	getch();
+}
+
+void cargarvector(vector v[max], int n)
+{
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < 2; j++)
+			cin >> v[i].b[j];
+}
+void mostrarvector(vector v[max], int n)
+{
+	int num, s;
+	string d;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "vector # " << i + 1 << ":  ";
+		for (int j = 0; j < 2; j++)
+		{
+			cout << v[i].b[j] << "\t";
+		}
+		cout << endl;
+	}
+	cout << endl;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			num = v[i].b[j];
+			if (numerocurioso(num, d, s)==true)
+			{
+				cout << "el " << num << " es un numero curioso porque el resultado de su suma es: " << d << " = " << s << endl;
+			}
+
+		}
+	}
+}
+
+int factorial(int n) 
+{
+	long fac = 1;
+	for (int i = 1; i <= n; i++)
+	{
+		fac = fac * i;
+	}
+	return fac;
+}
+
+bool numerocurioso(int n, string &x, int &r)
+{
+	bool cu;
+	int dig, s = 0, num, c = 0, vol = 0, aux;
+	string l;
+	aux = n;
+	while (aux > 0)
+	{
+		dig = aux % 10;
+		aux = aux / 10;
+		vol = vol * 10 + dig;
+	}
+	num = vol;
+	while (num > 0)
+	{
+		if (c == 0)
+		{
+			dig = num % 10;
+			stringstream ss;
+			ss << dig;
+			string newt = ss.str();
+			l = newt + "! ";
+			s = s + factorial(dig);
+		}
+		else
+		{
+			dig = num % 10;
+			stringstream ss;
+			ss << dig;
+			string newt = ss.str();
+			l = l +"+ " + newt + "! ";
+			s = s + factorial(dig);
+		}
+		c++;
+
+		num = num / 10;
+	}
+	x = l;
+	r = s;
+	if (n == s)
+	{
+		cu = true;
+	}
+	else
+	{
+		cu = false;
+	}
+	return cu;
+}
