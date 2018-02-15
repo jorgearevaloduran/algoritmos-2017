@@ -1,0 +1,53 @@
+#include "stdafx.h"
+#include "stdio.h"
+#include "conio.h"
+#include <iostream>
+#include <string>
+#define max 20
+
+using namespace std;
+bool capicua (char v[max], int k);
+
+void main()
+{
+	char v[max], va[max];
+	int k;
+	bool m=true;
+	cout<<"\t verificar si es capicua"<<endl;
+	cout<<"     introduzca el tamaño del vector: ";
+	cin>> k;
+
+	cout<<"introduzca palabra: "<<endl;
+	cin>>v;
+	
+	if(m==capicua (v, k))
+	{
+		cout<<"es capicua!!";
+	}
+	else
+	{
+		cout<<"no es capicua!!";
+	}
+	
+	getch();
+}
+
+bool capicua (char v[max], int k)
+{
+	int j=(k-1);
+	bool estado= true;
+	for(int i=0; i <k/2; i++)
+	{
+		if(v[i]!=v[j])
+		{
+			estado= false;
+			j--;
+		}
+		else
+		{
+		  j--;
+		}
+	}
+
+	return estado;
+}
